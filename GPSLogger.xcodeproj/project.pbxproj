@@ -16,6 +16,7 @@
 		DAD26688257C731400DCE40E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAD26686257C731400DCE40E /* LaunchScreen.storyboard */; };
 		DAD26693257C731400DCE40E /* GPSLoggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD26692257C731400DCE40E /* GPSLoggerTests.swift */; };
 		DAD2669E257C731400DCE40E /* GPSLoggerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD2669D257C731400DCE40E /* GPSLoggerUITests.swift */; };
+		DAD266B7257CA01000DCE40E /* Server.py in Resources */ = {isa = PBXBuildFile; fileRef = DAD266B6257CA01000DCE40E /* Server.py */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		DAD26699257C731400DCE40E /* GPSLoggerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GPSLoggerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAD2669D257C731400DCE40E /* GPSLoggerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPSLoggerUITests.swift; sourceTree = "<group>"; };
 		DAD2669F257C731400DCE40E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DAD266B6257CA01000DCE40E /* Server.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = Server.py; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 		DAD2666C257C731300DCE40E = {
 			isa = PBXGroup;
 			children = (
+				DAD266B5257C9FEE00DCE40E /* Server */,
 				DAD26677257C731300DCE40E /* GPSLogger */,
 				DAD26691257C731400DCE40E /* GPSLoggerTests */,
 				DAD2669C257C731400DCE40E /* GPSLoggerUITests */,
@@ -129,6 +132,14 @@
 				DAD2669F257C731400DCE40E /* Info.plist */,
 			);
 			path = GPSLoggerUITests;
+			sourceTree = "<group>";
+		};
+		DAD266B5257C9FEE00DCE40E /* Server */ = {
+			isa = PBXGroup;
+			children = (
+				DAD266B6257CA01000DCE40E /* Server.py */,
+			);
+			path = Server;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -237,6 +248,7 @@
 				DAD26688257C731400DCE40E /* LaunchScreen.storyboard in Resources */,
 				DAD26685257C731400DCE40E /* Assets.xcassets in Resources */,
 				DAD26680257C731400DCE40E /* Main.storyboard in Resources */,
+				DAD266B7257CA01000DCE40E /* Server.py in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
