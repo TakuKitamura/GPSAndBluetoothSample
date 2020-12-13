@@ -2,16 +2,11 @@ import UIKit
 import CoreBluetooth
 import MapKit
 
-class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDelegate, CLLocationManagerDelegate {
-    var myLocationManager: CLLocationManager!
+class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDelegate, UITextFieldDelegate, UITextViewDelegate {
     var centralManager: CBCentralManager!
     var myPeripheral: CBPeripheral!
-    
-    var location_json_str: String = ""
-    var pass_range_check_counter: Int = 0
-    var default_value: Double = 0
-    var old_value: Double = 0
-    var sample_values: [Double] = []
+    var cbcChar: CBCharacteristic!
+    var myTextView: UITextView!
     
     
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
@@ -29,7 +24,7 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         print(peripheral.name, peripheral.identifier)
-        if peripheral.identifier.uuidString == "5915C5A0-F4F0-8AD6-F78D-0935F1BAAEFE" {
+        if peripheral.identifier.uuidString == "BAF91016-3250-7F30-4EC8-D1A4F08D7B58" {
             self.centralManager.stopScan()
             
             self.myPeripheral = peripheral
@@ -60,12 +55,14 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
             print(error)
             return
         }
-        peripheral.setNotifyValue(true,for: (service.characteristics?.first)!)
+        
+        cbcChar = (service.characteristics?.first)!
         print("Start BLE Service!")
     }
 
     
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
+        
         guard error == nil else {
             print(error)
             return
@@ -78,102 +75,87 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
             print(Array(data))
             let data_value: Double = atof(data_string)
             
-//            print(data_value)
-        
-//            if (sample_values.count < 10) {
-//                sample_values.append(data_value)
-//                return
-//            } else {
-//                sample_values.append(data_value)
-//                sample_values.removeFirst(1)
-//            }
-//
-//            var sum_values = 0.0
-//            for value in sample_values {
-//                sum_values += value
-//            }
-//            let average_value = sum_values / Double(sample_values.count)
-        
- 
-            
-            let rate = data_value * 0.05 + old_value * 0.95
-            old_value = data_value
-            print(rate)
-            
-            let max_rate = 93.0
-            let min_rate = 92.0
-            
-            if(pass_range_check_counter == 0) {
-                if (rate <= max_rate && rate > min_rate) {
-                    pass_range_check_counter = 1
-                } else {
-                    pass_range_check_counter = 0
-                }
-            } else if (pass_range_check_counter == 1) {
-                if (rate < min_rate) {
-                    pass_range_check_counter = 2
-                    print("Remains Pressed")
-                }
-            } else if (pass_range_check_counter == 2) {
-                if (rate >= min_rate) {
-                    print("Released")
-                    let url = URL(string: "http://192.168.1.233:8080/api/location")!
-                    var request = URLRequest(url: url)
-                    request.httpBody = location_json_str.data(using: .utf8)
-                    request.httpMethod = "POST"      // Postリクエストを送る(このコードがないとGetリクエストになる)
-                    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-                    let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-                        guard let data = data else { return }
-                        do {
-                            print("API Request Success!")
-//                                let object = try JSONSerialization.jsonObject(with: data, options: [])
-//                                print(object)
-                        } catch let error {
-                            print(error)
-                        }
-                    }
-                    task.resume()
-                    pass_range_check_counter = 0
-                }
-            } else {
-                print("unexpected value")
-            }
         }
         
         return
     }
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//        print(locations.first)
-        let location = locations.first
-        let latitude = location?.coordinate.latitude
-        let longitude = location?.coordinate.longitude
-        let altitude = location?.altitude
-        
-        if let unwrap_latitude = latitude, let unwrap_longitude = longitude, let unwrap_altitude = altitude {
-            do {
-                let formatter = ISO8601DateFormatter()
-                let now = formatter.string(from: Date())
-                let location_json = try JSONSerialization.data(withJSONObject: ["now": now, "latitude": unwrap_latitude, "longitude": unwrap_longitude, "altitude": unwrap_altitude], options: [])
-                location_json_str = String(bytes: location_json, encoding: .utf8)!
-//                print(location_json_str)
-            } catch let error {
-                print(error)
-            }
-//            print(unwrap_latitude, unwrap_longitude, unwrap_altitude)
-        }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//        print(textField.text)
+        let data = textField.text!.data(using: String.Encoding.utf8, allowLossyConversion:true)
+        self.myPeripheral.writeValue(data!, for: cbcChar, type: .withResponse)
+        return true
+    }
+    
+    @objc func changeColor(sender: Any) { // buttonの色を変化させるメソッド
+        let data = myTextView.text!.data(using: String.Encoding.utf8, allowLossyConversion:true)
+        self.myPeripheral.writeValue(data!, for: cbcChar, type: .withResponse)
+//        button.backgroundColor = UIColor.darkGray
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        myLocationManager = CLLocationManager()
-        myLocationManager.requestAlwaysAuthorization()
-        myLocationManager.delegate = self
-        myLocationManager.desiredAccuracy = kCLLocationAccuracyBest
-//        myLocationManager.distanceFilter = 100
-        myLocationManager.startUpdatingLocation()
+        
+        myTextView = UITextView(frame: CGRect(x:0, y:50, width:self.view.frame.width, height:self.view.frame.height-50))
+        myTextView.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        myTextView.text =
+"""
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <title>持ち運び可能なWebサーバ</title>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <h1>持ち運び可能なWebサーバ</h1>
+      <h3>機能</h3>
+        持ち運び可能なWebサーバ! <br/>
+        Bluetooth経由でWebサイトを更新するので, インターネットがない環境でも動作する.
+      <h3>構成要素(968円)</h3>
+        <ul>
+          <li>
+            ESP32(Amazonで798円だった)
+          </li>
+          <li>
+            電源ボックス[単三電池2本用](秋月で70円)
+          </li>
+          <li>
+            アルカリ単3乾電池 2本 (100円くらい?)
+          </li>
+          <li>
+            ESP32とBluetoothするアプリ (作ったので 0円)
+          </li>
+        <ul>
+  </body>
+</html>
+"""
+        myTextView.font = UIFont.systemFont(ofSize: CGFloat(20))
+        myTextView.textColor = UIColor.black
+        myTextView.textAlignment = NSTextAlignment.left
+        myTextView.dataDetectorTypes = UIDataDetectorTypes.all //日付や数字の色を変更する
+        myTextView.isEditable = true;
+        myTextView.delegate = self;
+        
+        // TextViewをViewに追加する.
+        self.view.addSubview(myTextView)
+        
+        let button = UIButton()
+        
+        button.frame = CGRect(x: self.view.frame.width-100, y: self.view.frame.height-200, width: 100, height: 100)
+        // ボタンの設置座標とサイズを設定する.
+        button.backgroundColor = UIColor.black
+        // buttonのbackgroundcolorを指定
+        button.setTitle("Deploy", for: .normal)
+        // 通常時のbuttonの文字を指定
+        
+        button.addTarget(self, action: #selector(ViewController.changeColor(sender: )), for: .touchUpInside)
+        // buttonにイベントを追加
+        
+        
+        view.addSubview(button)
+        // 実際にviewに表示する
+        
         centralManager = CBCentralManager(delegate: self, queue: nil)
     }
 }

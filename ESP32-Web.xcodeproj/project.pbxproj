@@ -37,7 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		DAD26675257C731300DCE40E /* GPSLogger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GPSLogger.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DAD26675257C731300DCE40E /* ESP32-Web.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ESP32-Web.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAD26678257C731300DCE40E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DAD2667A257C731300DCE40E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		DAD2667C257C731400DCE40E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -46,10 +46,10 @@
 		DAD26684257C731400DCE40E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DAD26687257C731400DCE40E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DAD26689257C731400DCE40E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DAD2668E257C731400DCE40E /* GPSLoggerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GPSLoggerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DAD2668E257C731400DCE40E /* ESP32-WebTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ESP32-WebTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAD26692257C731400DCE40E /* GPSLoggerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPSLoggerTests.swift; sourceTree = "<group>"; };
 		DAD26694257C731400DCE40E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DAD26699257C731400DCE40E /* GPSLoggerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GPSLoggerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DAD26699257C731400DCE40E /* ESP32-WebUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ESP32-WebUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAD2669D257C731400DCE40E /* GPSLoggerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPSLoggerUITests.swift; sourceTree = "<group>"; };
 		DAD2669F257C731400DCE40E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DAD266B6257CA01000DCE40E /* Server.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = Server.py; sourceTree = "<group>"; };
@@ -94,9 +94,9 @@
 		DAD26676257C731300DCE40E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DAD26675257C731300DCE40E /* GPSLogger.app */,
-				DAD2668E257C731400DCE40E /* GPSLoggerTests.xctest */,
-				DAD26699257C731400DCE40E /* GPSLoggerUITests.xctest */,
+				DAD26675257C731300DCE40E /* ESP32-Web.app */,
+				DAD2668E257C731400DCE40E /* ESP32-WebTests.xctest */,
+				DAD26699257C731400DCE40E /* ESP32-WebUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -145,9 +145,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		DAD26674257C731300DCE40E /* GPSLogger */ = {
+		DAD26674257C731300DCE40E /* ESP32-Web */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DAD266A2257C731400DCE40E /* Build configuration list for PBXNativeTarget "GPSLogger" */;
+			buildConfigurationList = DAD266A2257C731400DCE40E /* Build configuration list for PBXNativeTarget "ESP32-Web" */;
 			buildPhases = (
 				DAD26671257C731300DCE40E /* Sources */,
 				DAD26672257C731300DCE40E /* Frameworks */,
@@ -157,14 +157,14 @@
 			);
 			dependencies = (
 			);
-			name = GPSLogger;
+			name = "ESP32-Web";
 			productName = GPSLogger;
-			productReference = DAD26675257C731300DCE40E /* GPSLogger.app */;
+			productReference = DAD26675257C731300DCE40E /* ESP32-Web.app */;
 			productType = "com.apple.product-type.application";
 		};
-		DAD2668D257C731400DCE40E /* GPSLoggerTests */ = {
+		DAD2668D257C731400DCE40E /* ESP32-WebTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DAD266A5257C731400DCE40E /* Build configuration list for PBXNativeTarget "GPSLoggerTests" */;
+			buildConfigurationList = DAD266A5257C731400DCE40E /* Build configuration list for PBXNativeTarget "ESP32-WebTests" */;
 			buildPhases = (
 				DAD2668A257C731400DCE40E /* Sources */,
 				DAD2668B257C731400DCE40E /* Frameworks */,
@@ -175,14 +175,14 @@
 			dependencies = (
 				DAD26690257C731400DCE40E /* PBXTargetDependency */,
 			);
-			name = GPSLoggerTests;
+			name = "ESP32-WebTests";
 			productName = GPSLoggerTests;
-			productReference = DAD2668E257C731400DCE40E /* GPSLoggerTests.xctest */;
+			productReference = DAD2668E257C731400DCE40E /* ESP32-WebTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		DAD26698257C731400DCE40E /* GPSLoggerUITests */ = {
+		DAD26698257C731400DCE40E /* ESP32-WebUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DAD266A8257C731400DCE40E /* Build configuration list for PBXNativeTarget "GPSLoggerUITests" */;
+			buildConfigurationList = DAD266A8257C731400DCE40E /* Build configuration list for PBXNativeTarget "ESP32-WebUITests" */;
 			buildPhases = (
 				DAD26695257C731400DCE40E /* Sources */,
 				DAD26696257C731400DCE40E /* Frameworks */,
@@ -193,9 +193,9 @@
 			dependencies = (
 				DAD2669B257C731400DCE40E /* PBXTargetDependency */,
 			);
-			name = GPSLoggerUITests;
+			name = "ESP32-WebUITests";
 			productName = GPSLoggerUITests;
-			productReference = DAD26699257C731400DCE40E /* GPSLoggerUITests.xctest */;
+			productReference = DAD26699257C731400DCE40E /* ESP32-WebUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -220,7 +220,7 @@
 					};
 				};
 			};
-			buildConfigurationList = DAD26670257C731300DCE40E /* Build configuration list for PBXProject "GPSLogger" */;
+			buildConfigurationList = DAD26670257C731300DCE40E /* Build configuration list for PBXProject "ESP32-Web" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -233,9 +233,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				DAD26674257C731300DCE40E /* GPSLogger */,
-				DAD2668D257C731400DCE40E /* GPSLoggerTests */,
-				DAD26698257C731400DCE40E /* GPSLoggerUITests */,
+				DAD26674257C731300DCE40E /* ESP32-Web */,
+				DAD2668D257C731400DCE40E /* ESP32-WebTests */,
+				DAD26698257C731400DCE40E /* ESP32-WebUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -301,12 +301,12 @@
 /* Begin PBXTargetDependency section */
 		DAD26690257C731400DCE40E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = DAD26674257C731300DCE40E /* GPSLogger */;
+			target = DAD26674257C731300DCE40E /* ESP32-Web */;
 			targetProxy = DAD2668F257C731400DCE40E /* PBXContainerItemProxy */;
 		};
 		DAD2669B257C731400DCE40E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = DAD26674257C731300DCE40E /* GPSLogger */;
+			target = DAD26674257C731300DCE40E /* ESP32-Web */;
 			targetProxy = DAD2669A257C731400DCE40E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -459,7 +459,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = takukitamura.GPSLogger;
+				PRODUCT_BUNDLE_IDENTIFIER = "takukitamura.esp32-web";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -478,7 +478,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = takukitamura.GPSLogger;
+				PRODUCT_BUNDLE_IDENTIFIER = "takukitamura.esp32-web";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -503,7 +503,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GPSLogger.app/GPSLogger";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ESP32-Web.app/ESP32-Web";
 			};
 			name = Debug;
 		};
@@ -525,7 +525,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GPSLogger.app/GPSLogger";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ESP32-Web.app/ESP32-Web";
 			};
 			name = Release;
 		};
@@ -572,7 +572,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		DAD26670257C731300DCE40E /* Build configuration list for PBXProject "GPSLogger" */ = {
+		DAD26670257C731300DCE40E /* Build configuration list for PBXProject "ESP32-Web" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DAD266A0257C731400DCE40E /* Debug */,
@@ -581,7 +581,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DAD266A2257C731400DCE40E /* Build configuration list for PBXNativeTarget "GPSLogger" */ = {
+		DAD266A2257C731400DCE40E /* Build configuration list for PBXNativeTarget "ESP32-Web" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DAD266A3257C731400DCE40E /* Debug */,
@@ -590,7 +590,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DAD266A5257C731400DCE40E /* Build configuration list for PBXNativeTarget "GPSLoggerTests" */ = {
+		DAD266A5257C731400DCE40E /* Build configuration list for PBXNativeTarget "ESP32-WebTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DAD266A6257C731400DCE40E /* Debug */,
@@ -599,7 +599,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DAD266A8257C731400DCE40E /* Build configuration list for PBXNativeTarget "GPSLoggerUITests" */ = {
+		DAD266A8257C731400DCE40E /* Build configuration list for PBXNativeTarget "ESP32-WebUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DAD266A9257C731400DCE40E /* Debug */,
