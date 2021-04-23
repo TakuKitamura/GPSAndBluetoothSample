@@ -81,16 +81,15 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//        print(textField.text)
         let data = textField.text!.data(using: String.Encoding.utf8, allowLossyConversion:true)
         self.myPeripheral.writeValue(data!, for: cbcChar, type: .withResponse)
         return true
     }
     
-    @objc func changeColor(sender: Any) { // buttonの色を変化させるメソッド
+    @objc func commitButtonTapped(sender: Any) { // buttonの色を変化させるメソッド
         let data = myTextView.text!.data(using: String.Encoding.utf8, allowLossyConversion:true)
         self.myPeripheral.writeValue(data!, for: cbcChar, type: .withResponse)
-//        button.backgroundColor = UIColor.darkGray
+        self.view.endEditing(true)
     }
     
     
@@ -99,37 +98,7 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         
         myTextView = UITextView(frame: CGRect(x:0, y:50, width:self.view.frame.width, height:self.view.frame.height-50))
         myTextView.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        myTextView.text =
-"""
-<!DOCTYPE html>
-<html lang="ja">
-  <head>
-    <title>持ち運び可能なWebサーバ</title>
-    <meta charset="UTF-8" />
-  </head>
-  <body>
-    <h1>持ち運び可能なWebサーバ</h1>
-      <h3>機能</h3>
-        持ち運び可能なWebサーバ! <br/>
-        Bluetooth経由でWebサイトを更新するので, インターネットがない環境でも動作する.
-      <h3>構成要素(968円)</h3>
-        <ul>
-          <li>
-            ESP32(Amazonで798円だった)
-          </li>
-          <li>
-            電源ボックス[単三電池2本用](秋月で70円)
-          </li>
-          <li>
-            アルカリ単3乾電池 2本 (100円くらい?)
-          </li>
-          <li>
-            ESP32とBluetoothするアプリ (作ったので 0円)
-          </li>
-        <ul>
-  </body>
-</html>
-"""
+        myTextView.text = "<h1>Hello World!</h1>"
         myTextView.font = UIFont.systemFont(ofSize: CGFloat(20))
         myTextView.textColor = UIColor.black
         myTextView.textAlignment = NSTextAlignment.left
@@ -140,21 +109,21 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         // TextViewをViewに追加する.
         self.view.addSubview(myTextView)
         
-        let button = UIButton()
         
-        button.frame = CGRect(x: self.view.frame.width-100, y: self.view.frame.height-200, width: 100, height: 100)
-        // ボタンの設置座標とサイズを設定する.
-        button.backgroundColor = UIColor.black
-        // buttonのbackgroundcolorを指定
-        button.setTitle("Deploy", for: .normal)
-        // 通常時のbuttonの文字を指定
-        
-        button.addTarget(self, action: #selector(ViewController.changeColor(sender: )), for: .touchUpInside)
-        // buttonにイベントを追加
-        
-        
-        view.addSubview(button)
-        // 実際にviewに表示する
+        // ツールバー生成
+         let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 40))
+         // スタイルを設定
+         toolBar.barStyle = UIBarStyle.default
+         // 画面幅に合わせてサイズを変更
+         toolBar.sizeToFit()
+         // 閉じるボタンを右に配置するためのスペース?
+         let spacer = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: self, action: nil)
+         // 閉じるボタン
+         let commitButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: self, action: #selector(commitButtonTapped))
+         // スペース、閉じるボタンを右側に配置
+         toolBar.items = [spacer, commitButton]
+         // textViewのキーボードにツールバーを設定
+        myTextView.inputAccessoryView = toolBar
         
         centralManager = CBCentralManager(delegate: self, queue: nil)
     }
