@@ -2,6 +2,8 @@ import UIKit
 import CoreBluetooth
 import MapKit
 
+// TODO: UUID関係は適宜書き換える
+
 class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDelegate, UITextFieldDelegate, UITextViewDelegate {
     var centralManager: CBCentralManager!
     var myPeripheral: CBPeripheral!
@@ -39,7 +41,6 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     }
     
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
-//        print(peripheral.services, error)
         if let peripheralServices = peripheral.services {
             for service in peripheralServices where service.uuid == CBUUID(string: "4fafc201-1fb5-459e-8fcc-c5c9c331914b") {
                 // キャラクタリスティック探索開始
@@ -67,10 +68,11 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
             print(error)
             return
         }
+
+        // esp32からデータを受け取る場合の処理(現在は利用していない)
         if let data = characteristic.value {
             let uint8_data = Array(data)
             
-
             let data_string = String(bytes: uint8_data, encoding: .utf8)
             print(Array(data))
             let data_value: Double = atof(data_string)
@@ -88,6 +90,8 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     
     @objc func commitButtonTapped(sender: Any) { // buttonの色を変化させるメソッド
         let data = myTextView.text!.data(using: String.Encoding.utf8, allowLossyConversion:true)
+
+        // esp32にデータを送信
         self.myPeripheral.writeValue(data!, for: cbcChar, type: .withResponse)
         self.view.endEditing(true)
     }
@@ -95,7 +99,8 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        // HTML書き込み画面
         myTextView = UITextView(frame: CGRect(x:0, y:50, width:self.view.frame.width, height:self.view.frame.height-50))
         myTextView.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         myTextView.text = "<h1>Hello World!</h1>"

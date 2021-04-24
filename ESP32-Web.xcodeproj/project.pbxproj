@@ -84,9 +84,9 @@
 			isa = PBXGroup;
 			children = (
 				DAD266B5257C9FEE00DCE40E /* Server */,
-				DAD26677257C731300DCE40E /* GPSLogger */,
-				DAD26691257C731400DCE40E /* GPSLoggerTests */,
-				DAD2669C257C731400DCE40E /* GPSLoggerUITests */,
+				DAD26677257C731300DCE40E /* ESP32-Web */,
+				DAD26691257C731400DCE40E /* ESP32-WebTests */,
+				DAD2669C257C731400DCE40E /* ESP32-WebUITests */,
 				DAD26676257C731300DCE40E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -101,7 +101,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		DAD26677257C731300DCE40E /* GPSLogger */ = {
+		DAD26677257C731300DCE40E /* ESP32-Web */ = {
 			isa = PBXGroup;
 			children = (
 				DAD26678257C731300DCE40E /* AppDelegate.swift */,
@@ -113,25 +113,25 @@
 				DAD26689257C731400DCE40E /* Info.plist */,
 				DAD26681257C731400DCE40E /* GPSLogger.xcdatamodeld */,
 			);
-			path = GPSLogger;
+			path = "ESP32-Web";
 			sourceTree = "<group>";
 		};
-		DAD26691257C731400DCE40E /* GPSLoggerTests */ = {
+		DAD26691257C731400DCE40E /* ESP32-WebTests */ = {
 			isa = PBXGroup;
 			children = (
 				DAD26692257C731400DCE40E /* GPSLoggerTests.swift */,
 				DAD26694257C731400DCE40E /* Info.plist */,
 			);
-			path = GPSLoggerTests;
+			path = "ESP32-WebTests";
 			sourceTree = "<group>";
 		};
-		DAD2669C257C731400DCE40E /* GPSLoggerUITests */ = {
+		DAD2669C257C731400DCE40E /* ESP32-WebUITests */ = {
 			isa = PBXGroup;
 			children = (
 				DAD2669D257C731400DCE40E /* GPSLoggerUITests.swift */,
 				DAD2669F257C731400DCE40E /* Info.plist */,
 			);
-			path = GPSLoggerUITests;
+			path = "ESP32-WebUITests";
 			sourceTree = "<group>";
 		};
 		DAD266B5257C9FEE00DCE40E /* Server */ = {
